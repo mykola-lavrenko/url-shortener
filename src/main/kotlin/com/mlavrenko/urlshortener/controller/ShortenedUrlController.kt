@@ -2,6 +2,7 @@ package com.mlavrenko.urlshortener.controller
 
 import com.mlavrenko.urlshortener.dto.ShortenedUrlDTO
 import com.mlavrenko.urlshortener.service.ShortenedUrlService
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.core.convert.ConversionException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -32,6 +33,7 @@ class UrlShortenerController(private val shortenedUrlService: ShortenedUrlServic
         return shortenedUrlService.shortenUrl(url)
     }
 
+    @Cacheable("shortened-urls")
     @GetMapping("/{shortenedUrl}")
     fun redirect(@PathVariable shortenedUrl: String): ShortenedUrlDTO {
         return shortenedUrlService.findByShortenedUrl(shortenedUrl)
