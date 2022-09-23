@@ -1,0 +1,5 @@
+spring:
+  application.name: url-shortener
+  autoconfigure:
+    exclude:
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
